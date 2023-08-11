@@ -28,6 +28,8 @@ int GLAD_GLX_VERSION_1_1 = 0;
 int GLAD_GLX_VERSION_1_2 = 0;
 int GLAD_GLX_VERSION_1_3 = 0;
 int GLAD_GLX_VERSION_1_4 = 0;
+int GLAD_GLX_ARB_create_context = 0;
+int GLAD_GLX_ARB_create_context_profile = 0;
 
 
 static void _pre_call_glx_callback_default(const char *name, GLADapiproc apiproc, int len_args, ...) {
@@ -86,6 +88,15 @@ static GLXContext GLAD_API_PTR glad_debug_impl_glXCreateContext(Display * dpy, X
     return ret;
 }
 PFNGLXCREATECONTEXTPROC glad_debug_glXCreateContext = glad_debug_impl_glXCreateContext;
+PFNGLXCREATECONTEXTATTRIBSARBPROC glad_glXCreateContextAttribsARB = NULL;
+static GLXContext GLAD_API_PTR glad_debug_impl_glXCreateContextAttribsARB(Display * dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int * attrib_list) {
+    GLXContext ret;
+    _pre_call_glx_callback("glXCreateContextAttribsARB", (GLADapiproc) glad_glXCreateContextAttribsARB, 5, dpy, config, share_context, direct, attrib_list);
+    ret = glad_glXCreateContextAttribsARB(dpy, config, share_context, direct, attrib_list);
+    _post_call_glx_callback((void*) &ret, "glXCreateContextAttribsARB", (GLADapiproc) glad_glXCreateContextAttribsARB, 5, dpy, config, share_context, direct, attrib_list);
+    return ret;
+}
+PFNGLXCREATECONTEXTATTRIBSARBPROC glad_debug_glXCreateContextAttribsARB = glad_debug_impl_glXCreateContextAttribsARB;
 PFNGLXCREATEGLXPIXMAPPROC glad_glXCreateGLXPixmap = NULL;
 static GLXPixmap GLAD_API_PTR glad_debug_impl_glXCreateGLXPixmap(Display * dpy, XVisualInfo * visual, Pixmap pixmap) {
     GLXPixmap ret;
@@ -445,8 +456,14 @@ static void glad_glx_load_GLX_VERSION_1_4( GLADuserptrloadfunc load, void* userp
     if(!GLAD_GLX_VERSION_1_4) return;
     glad_glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) load(userptr, "glXGetProcAddress");
 }
+static void glad_glx_load_GLX_ARB_create_context( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GLX_ARB_create_context) return;
+    glad_glXCreateContextAttribsARB = (PFNGLXCREATECONTEXTATTRIBSARBPROC) load(userptr, "glXCreateContextAttribsARB");
+}
 
 
+static void glad_glx_resolve_aliases(void) {
+}
 
 static int glad_glx_has_extension(Display *display, int screen, const char *ext) {
 #ifndef GLX_VERSION_1_1
@@ -490,7 +507,8 @@ static GLADapiproc glad_glx_get_proc_from_userptr(void *userptr, const char* nam
 }
 
 static int glad_glx_find_extensions(Display *display, int screen) {
-    GLAD_UNUSED(glad_glx_has_extension);
+    GLAD_GLX_ARB_create_context = glad_glx_has_extension(display, screen, "GLX_ARB_create_context");
+    GLAD_GLX_ARB_create_context_profile = glad_glx_has_extension(display, screen, "GLX_ARB_create_context_profile");
     return 1;
 }
 
@@ -530,7 +548,9 @@ int gladLoadGLXUserPtr(Display *display, int screen, GLADuserptrloadfunc load, v
     glad_glx_load_GLX_VERSION_1_4(load, userptr);
 
     if (!glad_glx_find_extensions(display, screen)) return 0;
+    glad_glx_load_GLX_ARB_create_context(load, userptr);
 
+    glad_glx_resolve_aliases();
 
     return version;
 }
@@ -545,6 +565,7 @@ void gladInstallGLXDebug() {
     glad_debug_glXChooseVisual = glad_debug_impl_glXChooseVisual;
     glad_debug_glXCopyContext = glad_debug_impl_glXCopyContext;
     glad_debug_glXCreateContext = glad_debug_impl_glXCreateContext;
+    glad_debug_glXCreateContextAttribsARB = glad_debug_impl_glXCreateContextAttribsARB;
     glad_debug_glXCreateGLXPixmap = glad_debug_impl_glXCreateGLXPixmap;
     glad_debug_glXCreateNewContext = glad_debug_impl_glXCreateNewContext;
     glad_debug_glXCreatePbuffer = glad_debug_impl_glXCreatePbuffer;
@@ -587,6 +608,7 @@ void gladUninstallGLXDebug() {
     glad_debug_glXChooseVisual = glad_glXChooseVisual;
     glad_debug_glXCopyContext = glad_glXCopyContext;
     glad_debug_glXCreateContext = glad_glXCreateContext;
+    glad_debug_glXCreateContextAttribsARB = glad_glXCreateContextAttribsARB;
     glad_debug_glXCreateGLXPixmap = glad_glXCreateGLXPixmap;
     glad_debug_glXCreateNewContext = glad_glXCreateNewContext;
     glad_debug_glXCreatePbuffer = glad_glXCreatePbuffer;
