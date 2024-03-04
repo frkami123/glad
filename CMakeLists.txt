@@ -10,15 +10,18 @@ set(CMAKE_POLICY_DEFAULT_CMP0135 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 
-option(GLAD_PLATFORM_EMSCRIPTEN "Glad on emscripten platform" OFF)
-option(GLAD_PLATFROM_GLX "Glad compiles GLX" ON)
-option(GLAD_PLATFROM_GLX "Glad compiles GLES" OFF)
+option(GLAD_PLATFROM_GLX "Glad compiles GLX" OFF)
+option(GLAD_PLATFROM_WGL "Glad compiles WGL" OFF)
 option(GLAD_GLX_NO_X11 "No idea what this is" OFF)
+
+option(GLAD_PLATFORM_EMSCRIPTEN "Glad on emscripten platform" OFF)
+option(GLAD_PLATFROM_GLES "Glad compiles GLES" OFF)
 
 add_library(glad STATIC
   include/glad/gl.h
   #$<IF:$<BOOL:GLAD_PLATFROM_GLX>,include/glad/gles2.h,"">
   $<$<PLATFORM_ID:Linux>:$<IF:$<BOOL:GLAD_PLATFROM_GLX>,include/glad/glx.h,"">>
+  $<$<PLATFORM_ID:Windows>:$<IF:$<BOOL:GLAD_PLATFROM_WGL>,include/glad/wgl.h,"">>
   include/KHR/khrplatform.h
 )
 
@@ -26,6 +29,7 @@ target_sources(glad PRIVATE
   src/gl.c
   #$<IF:$<BOOL:GLAD_PLATFROM_GLX>,src/gles2.c,"">
   $<$<PLATFORM_ID:Linux>:$<IF:$<BOOL:GLAD_PLATFROM_GLX>,src/glx.c,"">>
+  $<$<PLATFORM_ID:Windows>:$<IF:$<BOOL:GLAD_PLATFROM_WGL>,src/wgl.c,"">>
 )
 
 set_property(TARGET glad PROPERTY CXX_STANDARD 23)
