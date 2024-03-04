@@ -30,6 +30,10 @@ int GLAD_GLX_VERSION_1_3 = 0;
 int GLAD_GLX_VERSION_1_4 = 0;
 int GLAD_GLX_ARB_create_context = 0;
 int GLAD_GLX_ARB_create_context_profile = 0;
+int GLAD_GLX_ARB_fbconfig_float = 0;
+int GLAD_GLX_ARB_framebuffer_sRGB = 0;
+int GLAD_GLX_ARB_get_proc_address = 0;
+int GLAD_GLX_ARB_multisample = 0;
 
 
 static void _pre_call_glx_callback_default(const char *name, GLADapiproc apiproc, int len_args, ...) {
@@ -263,6 +267,15 @@ static __GLXextFuncPtr GLAD_API_PTR glad_debug_impl_glXGetProcAddress(const GLub
     return ret;
 }
 PFNGLXGETPROCADDRESSPROC glad_debug_glXGetProcAddress = glad_debug_impl_glXGetProcAddress;
+PFNGLXGETPROCADDRESSARBPROC glad_glXGetProcAddressARB = NULL;
+static __GLXextFuncPtr GLAD_API_PTR glad_debug_impl_glXGetProcAddressARB(const GLubyte * procName) {
+    __GLXextFuncPtr ret;
+    _pre_call_glx_callback("glXGetProcAddressARB", (GLADapiproc) glad_glXGetProcAddressARB, 1, procName);
+    ret = glad_glXGetProcAddressARB(procName);
+    _post_call_glx_callback((void*) &ret, "glXGetProcAddressARB", (GLADapiproc) glad_glXGetProcAddressARB, 1, procName);
+    return ret;
+}
+PFNGLXGETPROCADDRESSARBPROC glad_debug_glXGetProcAddressARB = glad_debug_impl_glXGetProcAddressARB;
 PFNGLXGETSELECTEDEVENTPROC glad_glXGetSelectedEvent = NULL;
 static void GLAD_API_PTR glad_debug_impl_glXGetSelectedEvent(Display * dpy, GLXDrawable draw, unsigned long * event_mask) {
     _pre_call_glx_callback("glXGetSelectedEvent", (GLADapiproc) glad_glXGetSelectedEvent, 3, dpy, draw, event_mask);
@@ -460,6 +473,10 @@ static void glad_glx_load_GLX_ARB_create_context( GLADuserptrloadfunc load, void
     if(!GLAD_GLX_ARB_create_context) return;
     glad_glXCreateContextAttribsARB = (PFNGLXCREATECONTEXTATTRIBSARBPROC) load(userptr, "glXCreateContextAttribsARB");
 }
+static void glad_glx_load_GLX_ARB_get_proc_address( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GLX_ARB_get_proc_address) return;
+    glad_glXGetProcAddressARB = (PFNGLXGETPROCADDRESSARBPROC) load(userptr, "glXGetProcAddressARB");
+}
 
 
 static void glad_glx_resolve_aliases(void) {
@@ -509,6 +526,10 @@ static GLADapiproc glad_glx_get_proc_from_userptr(void *userptr, const char* nam
 static int glad_glx_find_extensions(Display *display, int screen) {
     GLAD_GLX_ARB_create_context = glad_glx_has_extension(display, screen, "GLX_ARB_create_context");
     GLAD_GLX_ARB_create_context_profile = glad_glx_has_extension(display, screen, "GLX_ARB_create_context_profile");
+    GLAD_GLX_ARB_fbconfig_float = glad_glx_has_extension(display, screen, "GLX_ARB_fbconfig_float");
+    GLAD_GLX_ARB_framebuffer_sRGB = glad_glx_has_extension(display, screen, "GLX_ARB_framebuffer_sRGB");
+    GLAD_GLX_ARB_get_proc_address = glad_glx_has_extension(display, screen, "GLX_ARB_get_proc_address");
+    GLAD_GLX_ARB_multisample = glad_glx_has_extension(display, screen, "GLX_ARB_multisample");
     return 1;
 }
 
@@ -549,6 +570,7 @@ int gladLoadGLXUserPtr(Display *display, int screen, GLADuserptrloadfunc load, v
 
     if (!glad_glx_find_extensions(display, screen)) return 0;
     glad_glx_load_GLX_ARB_create_context(load, userptr);
+    glad_glx_load_GLX_ARB_get_proc_address(load, userptr);
 
     glad_glx_resolve_aliases();
 
@@ -585,6 +607,7 @@ void gladInstallGLXDebug() {
     glad_debug_glXGetFBConfigAttrib = glad_debug_impl_glXGetFBConfigAttrib;
     glad_debug_glXGetFBConfigs = glad_debug_impl_glXGetFBConfigs;
     glad_debug_glXGetProcAddress = glad_debug_impl_glXGetProcAddress;
+    glad_debug_glXGetProcAddressARB = glad_debug_impl_glXGetProcAddressARB;
     glad_debug_glXGetSelectedEvent = glad_debug_impl_glXGetSelectedEvent;
     glad_debug_glXGetVisualFromFBConfig = glad_debug_impl_glXGetVisualFromFBConfig;
     glad_debug_glXIsDirect = glad_debug_impl_glXIsDirect;
@@ -628,6 +651,7 @@ void gladUninstallGLXDebug() {
     glad_debug_glXGetFBConfigAttrib = glad_glXGetFBConfigAttrib;
     glad_debug_glXGetFBConfigs = glad_glXGetFBConfigs;
     glad_debug_glXGetProcAddress = glad_glXGetProcAddress;
+    glad_debug_glXGetProcAddressARB = glad_glXGetProcAddressARB;
     glad_debug_glXGetSelectedEvent = glad_glXGetSelectedEvent;
     glad_debug_glXGetVisualFromFBConfig = glad_glXGetVisualFromFBConfig;
     glad_debug_glXIsDirect = glad_glXIsDirect;

@@ -127,8 +127,6 @@ int GLAD_GL_EXT_blend_equation_separate = 0;
 int GLAD_GL_EXT_blend_func_separate = 0;
 int GLAD_GL_EXT_blend_minmax = 0;
 int GLAD_GL_EXT_copy_texture = 0;
-int GLAD_GL_EXT_debug_label = 0;
-int GLAD_GL_EXT_debug_marker = 0;
 int GLAD_GL_EXT_direct_state_access = 0;
 int GLAD_GL_EXT_draw_buffers2 = 0;
 int GLAD_GL_EXT_draw_instanced = 0;
@@ -3807,14 +3805,6 @@ static void GLAD_API_PTR glad_debug_impl_glGetObjectLabel(GLenum identifier, GLu
     
 }
 PFNGLGETOBJECTLABELPROC glad_debug_glGetObjectLabel = glad_debug_impl_glGetObjectLabel;
-PFNGLGETOBJECTLABELEXTPROC glad_glGetObjectLabelEXT = NULL;
-static void GLAD_API_PTR glad_debug_impl_glGetObjectLabelEXT(GLenum type, GLuint object, GLsizei bufSize, GLsizei * length, GLchar * label) {
-    _pre_call_gl_callback("glGetObjectLabelEXT", (GLADapiproc) glad_glGetObjectLabelEXT, 5, type, object, bufSize, length, label);
-    glad_glGetObjectLabelEXT(type, object, bufSize, length, label);
-    _post_call_gl_callback(NULL, "glGetObjectLabelEXT", (GLADapiproc) glad_glGetObjectLabelEXT, 5, type, object, bufSize, length, label);
-    
-}
-PFNGLGETOBJECTLABELEXTPROC glad_debug_glGetObjectLabelEXT = glad_debug_impl_glGetObjectLabelEXT;
 PFNGLGETOBJECTPARAMETERFVARBPROC glad_glGetObjectParameterfvARB = NULL;
 static void GLAD_API_PTR glad_debug_impl_glGetObjectParameterfvARB(GLhandleARB obj, GLenum pname, GLfloat * params) {
     _pre_call_gl_callback("glGetObjectParameterfvARB", (GLADapiproc) glad_glGetObjectParameterfvARB, 3, obj, pname, params);
@@ -4970,14 +4960,6 @@ static void GLAD_API_PTR glad_debug_impl_glIndexPointerEXT(GLenum type, GLsizei 
     
 }
 PFNGLINDEXPOINTEREXTPROC glad_debug_glIndexPointerEXT = glad_debug_impl_glIndexPointerEXT;
-PFNGLINSERTEVENTMARKEREXTPROC glad_glInsertEventMarkerEXT = NULL;
-static void GLAD_API_PTR glad_debug_impl_glInsertEventMarkerEXT(GLsizei length, const GLchar * marker) {
-    _pre_call_gl_callback("glInsertEventMarkerEXT", (GLADapiproc) glad_glInsertEventMarkerEXT, 2, length, marker);
-    glad_glInsertEventMarkerEXT(length, marker);
-    _post_call_gl_callback(NULL, "glInsertEventMarkerEXT", (GLADapiproc) glad_glInsertEventMarkerEXT, 2, length, marker);
-    
-}
-PFNGLINSERTEVENTMARKEREXTPROC glad_debug_glInsertEventMarkerEXT = glad_debug_impl_glInsertEventMarkerEXT;
 PFNGLINVALIDATEBUFFERDATAPROC glad_glInvalidateBufferData = NULL;
 static void GLAD_API_PTR glad_debug_impl_glInvalidateBufferData(GLuint buffer) {
     _pre_call_gl_callback("glInvalidateBufferData", (GLADapiproc) glad_glInvalidateBufferData, 1, buffer);
@@ -5258,14 +5240,6 @@ static GLboolean GLAD_API_PTR glad_debug_impl_glIsVertexArrayAPPLE(GLuint array)
     return ret;
 }
 PFNGLISVERTEXARRAYAPPLEPROC glad_debug_glIsVertexArrayAPPLE = glad_debug_impl_glIsVertexArrayAPPLE;
-PFNGLLABELOBJECTEXTPROC glad_glLabelObjectEXT = NULL;
-static void GLAD_API_PTR glad_debug_impl_glLabelObjectEXT(GLenum type, GLuint object, GLsizei length, const GLchar * label) {
-    _pre_call_gl_callback("glLabelObjectEXT", (GLADapiproc) glad_glLabelObjectEXT, 4, type, object, length, label);
-    glad_glLabelObjectEXT(type, object, length, label);
-    _post_call_gl_callback(NULL, "glLabelObjectEXT", (GLADapiproc) glad_glLabelObjectEXT, 4, type, object, length, label);
-    
-}
-PFNGLLABELOBJECTEXTPROC glad_debug_glLabelObjectEXT = glad_debug_impl_glLabelObjectEXT;
 PFNGLLINEWIDTHPROC glad_glLineWidth = NULL;
 static void GLAD_API_PTR glad_debug_impl_glLineWidth(GLfloat width) {
     _pre_call_gl_callback("glLineWidth", (GLADapiproc) glad_glLineWidth, 1, width);
@@ -6657,14 +6631,6 @@ static void GLAD_API_PTR glad_debug_impl_glPopDebugGroup(void) {
     
 }
 PFNGLPOPDEBUGGROUPPROC glad_debug_glPopDebugGroup = glad_debug_impl_glPopDebugGroup;
-PFNGLPOPGROUPMARKEREXTPROC glad_glPopGroupMarkerEXT = NULL;
-static void GLAD_API_PTR glad_debug_impl_glPopGroupMarkerEXT(void) {
-    _pre_call_gl_callback("glPopGroupMarkerEXT", (GLADapiproc) glad_glPopGroupMarkerEXT, 0);
-    glad_glPopGroupMarkerEXT();
-    _post_call_gl_callback(NULL, "glPopGroupMarkerEXT", (GLADapiproc) glad_glPopGroupMarkerEXT, 0);
-    
-}
-PFNGLPOPGROUPMARKEREXTPROC glad_debug_glPopGroupMarkerEXT = glad_debug_impl_glPopGroupMarkerEXT;
 PFNGLPRIMITIVERESTARTINDEXPROC glad_glPrimitiveRestartIndex = NULL;
 static void GLAD_API_PTR glad_debug_impl_glPrimitiveRestartIndex(GLuint index) {
     _pre_call_gl_callback("glPrimitiveRestartIndex", (GLADapiproc) glad_glPrimitiveRestartIndex, 1, index);
@@ -7673,14 +7639,6 @@ static void GLAD_API_PTR glad_debug_impl_glPushDebugGroup(GLenum source, GLuint 
     
 }
 PFNGLPUSHDEBUGGROUPPROC glad_debug_glPushDebugGroup = glad_debug_impl_glPushDebugGroup;
-PFNGLPUSHGROUPMARKEREXTPROC glad_glPushGroupMarkerEXT = NULL;
-static void GLAD_API_PTR glad_debug_impl_glPushGroupMarkerEXT(GLsizei length, const GLchar * marker) {
-    _pre_call_gl_callback("glPushGroupMarkerEXT", (GLADapiproc) glad_glPushGroupMarkerEXT, 2, length, marker);
-    glad_glPushGroupMarkerEXT(length, marker);
-    _post_call_gl_callback(NULL, "glPushGroupMarkerEXT", (GLADapiproc) glad_glPushGroupMarkerEXT, 2, length, marker);
-    
-}
-PFNGLPUSHGROUPMARKEREXTPROC glad_debug_glPushGroupMarkerEXT = glad_debug_impl_glPushGroupMarkerEXT;
 PFNGLQUERYCOUNTERPROC glad_glQueryCounter = NULL;
 static void GLAD_API_PTR glad_debug_impl_glQueryCounter(GLuint id, GLenum target) {
     _pre_call_gl_callback("glQueryCounter", (GLADapiproc) glad_glQueryCounter, 2, id, target);
@@ -12759,17 +12717,6 @@ static void glad_gl_load_GL_EXT_copy_texture( GLADuserptrloadfunc load, void* us
     glad_glCopyTexSubImage2DEXT = (PFNGLCOPYTEXSUBIMAGE2DEXTPROC) load(userptr, "glCopyTexSubImage2DEXT");
     glad_glCopyTexSubImage3DEXT = (PFNGLCOPYTEXSUBIMAGE3DEXTPROC) load(userptr, "glCopyTexSubImage3DEXT");
 }
-static void glad_gl_load_GL_EXT_debug_label( GLADuserptrloadfunc load, void* userptr) {
-    if(!GLAD_GL_EXT_debug_label) return;
-    glad_glGetObjectLabelEXT = (PFNGLGETOBJECTLABELEXTPROC) load(userptr, "glGetObjectLabelEXT");
-    glad_glLabelObjectEXT = (PFNGLLABELOBJECTEXTPROC) load(userptr, "glLabelObjectEXT");
-}
-static void glad_gl_load_GL_EXT_debug_marker( GLADuserptrloadfunc load, void* userptr) {
-    if(!GLAD_GL_EXT_debug_marker) return;
-    glad_glInsertEventMarkerEXT = (PFNGLINSERTEVENTMARKEREXTPROC) load(userptr, "glInsertEventMarkerEXT");
-    glad_glPopGroupMarkerEXT = (PFNGLPOPGROUPMARKEREXTPROC) load(userptr, "glPopGroupMarkerEXT");
-    glad_glPushGroupMarkerEXT = (PFNGLPUSHGROUPMARKEREXTPROC) load(userptr, "glPushGroupMarkerEXT");
-}
 static void glad_gl_load_GL_EXT_direct_state_access( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_EXT_direct_state_access) return;
     glad_glBindMultiTextureEXT = (PFNGLBINDMULTITEXTUREEXTPROC) load(userptr, "glBindMultiTextureEXT");
@@ -14226,36 +14173,24 @@ static void glad_gl_resolve_aliases(void) {
     if (glad_glVertexAttribPointerARB == NULL && glad_glVertexAttribPointer != NULL) glad_glVertexAttribPointerARB = (PFNGLVERTEXATTRIBPOINTERARBPROC)glad_glVertexAttribPointer;
 }
 
-#if defined(GL_ES_VERSION_3_0) || defined(GL_VERSION_3_0)
-#define GLAD_GL_IS_SOME_NEW_VERSION 1
-#else
-#define GLAD_GL_IS_SOME_NEW_VERSION 0
-#endif
-
-static int glad_gl_get_extensions( int version, const char **out_exts, unsigned int *out_num_exts_i, char ***out_exts_i) {
-#if GLAD_GL_IS_SOME_NEW_VERSION
-    if(GLAD_VERSION_MAJOR(version) < 3) {
-#else
-    GLAD_UNUSED(version);
-    GLAD_UNUSED(out_num_exts_i);
-    GLAD_UNUSED(out_exts_i);
-#endif
-        if (glad_glGetString == NULL) {
-            return 0;
+static void glad_gl_free_extensions(char **exts_i) {
+    if (exts_i != NULL) {
+        unsigned int index;
+        for(index = 0; exts_i[index]; index++) {
+            free((void *) (exts_i[index]));
         }
-        *out_exts = (const char *)glad_glGetString(GL_EXTENSIONS);
-#if GLAD_GL_IS_SOME_NEW_VERSION
-    } else {
+        free((void *)exts_i);
+        exts_i = NULL;
+    }
+}
+static int glad_gl_get_extensions( const char **out_exts, char ***out_exts_i) {
+#if defined(GL_ES_VERSION_3_0) || defined(GL_VERSION_3_0)
+    if (glad_glGetStringi != NULL && glad_glGetIntegerv != NULL) {
         unsigned int index = 0;
         unsigned int num_exts_i = 0;
         char **exts_i = NULL;
-        if (glad_glGetStringi == NULL || glad_glGetIntegerv == NULL) {
-            return 0;
-        }
         glad_glGetIntegerv(GL_NUM_EXTENSIONS, (int*) &num_exts_i);
-        if (num_exts_i > 0) {
-            exts_i = (char **) malloc(num_exts_i * (sizeof *exts_i));
-        }
+        exts_i = (char **) malloc((num_exts_i + 1) * (sizeof *exts_i));
         if (exts_i == NULL) {
             return 0;
         }
@@ -14264,31 +14199,40 @@ static int glad_gl_get_extensions( int version, const char **out_exts, unsigned 
             size_t len = strlen(gl_str_tmp) + 1;
 
             char *local_str = (char*) malloc(len * sizeof(char));
-            if(local_str != NULL) {
-                memcpy(local_str, gl_str_tmp, len * sizeof(char));
+            if(local_str == NULL) {
+                exts_i[index] = NULL;
+                glad_gl_free_extensions(exts_i);
+                return 0;
             }
 
+            memcpy(local_str, gl_str_tmp, len * sizeof(char));
             exts_i[index] = local_str;
         }
+        exts_i[index] = NULL;
 
-        *out_num_exts_i = num_exts_i;
         *out_exts_i = exts_i;
+
+        return 1;
     }
+#else
+    GLAD_UNUSED(out_exts_i);
 #endif
+    if (glad_glGetString == NULL) {
+        return 0;
+    }
+    *out_exts = (const char *)glad_glGetString(GL_EXTENSIONS);
     return 1;
 }
-static void glad_gl_free_extensions(char **exts_i, unsigned int num_exts_i) {
-    if (exts_i != NULL) {
+static int glad_gl_has_extension(const char *exts, char **exts_i, const char *ext) {
+    if(exts_i) {
         unsigned int index;
-        for(index = 0; index < num_exts_i; index++) {
-            free((void *) (exts_i[index]));
+        for(index = 0; exts_i[index]; index++) {
+            const char *e = exts_i[index];
+            if(strcmp(e, ext) == 0) {
+                return 1;
+            }
         }
-        free((void *)exts_i);
-        exts_i = NULL;
-    }
-}
-static int glad_gl_has_extension(int version, const char *exts, unsigned int num_exts_i, char **exts_i, const char *ext) {
-    if(GLAD_VERSION_MAJOR(version) < 3 || !GLAD_GL_IS_SOME_NEW_VERSION) {
+    } else {
         const char *extensions;
         const char *loc;
         const char *terminator;
@@ -14308,14 +14252,6 @@ static int glad_gl_has_extension(int version, const char *exts, unsigned int num
             }
             extensions = terminator;
         }
-    } else {
-        unsigned int index;
-        for(index = 0; index < num_exts_i; index++) {
-            const char *e = exts_i[index];
-            if(strcmp(e, ext) == 0) {
-                return 1;
-            }
-        }
     }
     return 0;
 }
@@ -14324,140 +14260,137 @@ static GLADapiproc glad_gl_get_proc_from_userptr(void *userptr, const char* name
     return (GLAD_GNUC_EXTENSION (GLADapiproc (*)(const char *name)) userptr)(name);
 }
 
-static int glad_gl_find_extensions_gl( int version) {
+static int glad_gl_find_extensions_gl(void) {
     const char *exts = NULL;
-    unsigned int num_exts_i = 0;
     char **exts_i = NULL;
-    if (!glad_gl_get_extensions(version, &exts, &num_exts_i, &exts_i)) return 0;
+    if (!glad_gl_get_extensions(&exts, &exts_i)) return 0;
 
-    GLAD_GL_AMD_draw_buffers_blend = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_AMD_draw_buffers_blend");
-    GLAD_GL_AMD_multi_draw_indirect = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_AMD_multi_draw_indirect");
-    GLAD_GL_APPLE_flush_buffer_range = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_APPLE_flush_buffer_range");
-    GLAD_GL_APPLE_vertex_array_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_APPLE_vertex_array_object");
-    GLAD_GL_ARB_ES2_compatibility = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_ES2_compatibility");
-    GLAD_GL_ARB_ES3_1_compatibility = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_ES3_1_compatibility");
-    GLAD_GL_ARB_base_instance = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_base_instance");
-    GLAD_GL_ARB_blend_func_extended = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_blend_func_extended");
-    GLAD_GL_ARB_buffer_storage = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_buffer_storage");
-    GLAD_GL_ARB_clear_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_clear_buffer_object");
-    GLAD_GL_ARB_clear_texture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_clear_texture");
-    GLAD_GL_ARB_clip_control = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_clip_control");
-    GLAD_GL_ARB_color_buffer_float = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_color_buffer_float");
-    GLAD_GL_ARB_compute_shader = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_compute_shader");
-    GLAD_GL_ARB_copy_buffer = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_copy_buffer");
-    GLAD_GL_ARB_copy_image = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_copy_image");
-    GLAD_GL_ARB_debug_output = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_debug_output");
-    GLAD_GL_ARB_direct_state_access = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_direct_state_access");
-    GLAD_GL_ARB_draw_buffers = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_buffers");
-    GLAD_GL_ARB_draw_buffers_blend = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_buffers_blend");
-    GLAD_GL_ARB_draw_elements_base_vertex = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_elements_base_vertex");
-    GLAD_GL_ARB_draw_indirect = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_indirect");
-    GLAD_GL_ARB_draw_instanced = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_instanced");
-    GLAD_GL_ARB_framebuffer_no_attachments = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_framebuffer_no_attachments");
-    GLAD_GL_ARB_framebuffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_framebuffer_object");
-    GLAD_GL_ARB_geometry_shader4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_geometry_shader4");
-    GLAD_GL_ARB_get_program_binary = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_get_program_binary");
-    GLAD_GL_ARB_get_texture_sub_image = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_get_texture_sub_image");
-    GLAD_GL_ARB_gl_spirv = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_gl_spirv");
-    GLAD_GL_ARB_gpu_shader_fp64 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_gpu_shader_fp64");
-    GLAD_GL_ARB_imaging = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_imaging");
-    GLAD_GL_ARB_indirect_parameters = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_indirect_parameters");
-    GLAD_GL_ARB_instanced_arrays = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_instanced_arrays");
-    GLAD_GL_ARB_internalformat_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_internalformat_query");
-    GLAD_GL_ARB_internalformat_query2 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_internalformat_query2");
-    GLAD_GL_ARB_invalidate_subdata = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_invalidate_subdata");
-    GLAD_GL_ARB_map_buffer_range = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_map_buffer_range");
-    GLAD_GL_ARB_multi_bind = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multi_bind");
-    GLAD_GL_ARB_multi_draw_indirect = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multi_draw_indirect");
-    GLAD_GL_ARB_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multisample");
-    GLAD_GL_ARB_multitexture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multitexture");
-    GLAD_GL_ARB_occlusion_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_occlusion_query");
-    GLAD_GL_ARB_point_parameters = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_point_parameters");
-    GLAD_GL_ARB_polygon_offset_clamp = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_polygon_offset_clamp");
-    GLAD_GL_ARB_program_interface_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_program_interface_query");
-    GLAD_GL_ARB_provoking_vertex = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_provoking_vertex");
-    GLAD_GL_ARB_robustness = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_robustness");
-    GLAD_GL_ARB_sample_shading = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_sample_shading");
-    GLAD_GL_ARB_sampler_objects = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_sampler_objects");
-    GLAD_GL_ARB_separate_shader_objects = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_separate_shader_objects");
-    GLAD_GL_ARB_shader_atomic_counters = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_atomic_counters");
-    GLAD_GL_ARB_shader_image_load_store = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_image_load_store");
-    GLAD_GL_ARB_shader_objects = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_objects");
-    GLAD_GL_ARB_shader_storage_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_storage_buffer_object");
-    GLAD_GL_ARB_shader_subroutine = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_subroutine");
-    GLAD_GL_ARB_sync = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_sync");
-    GLAD_GL_ARB_tessellation_shader = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_tessellation_shader");
-    GLAD_GL_ARB_texture_barrier = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_barrier");
-    GLAD_GL_ARB_texture_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_buffer_object");
-    GLAD_GL_ARB_texture_buffer_range = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_buffer_range");
-    GLAD_GL_ARB_texture_compression = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_compression");
-    GLAD_GL_ARB_texture_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_multisample");
-    GLAD_GL_ARB_texture_storage = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_storage");
-    GLAD_GL_ARB_texture_storage_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_storage_multisample");
-    GLAD_GL_ARB_texture_view = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_view");
-    GLAD_GL_ARB_timer_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_timer_query");
-    GLAD_GL_ARB_transform_feedback2 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_transform_feedback2");
-    GLAD_GL_ARB_transform_feedback3 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_transform_feedback3");
-    GLAD_GL_ARB_transform_feedback_instanced = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_transform_feedback_instanced");
-    GLAD_GL_ARB_uniform_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_uniform_buffer_object");
-    GLAD_GL_ARB_vertex_array_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_array_object");
-    GLAD_GL_ARB_vertex_attrib_64bit = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_attrib_64bit");
-    GLAD_GL_ARB_vertex_attrib_binding = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_attrib_binding");
-    GLAD_GL_ARB_vertex_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_buffer_object");
-    GLAD_GL_ARB_vertex_program = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_program");
-    GLAD_GL_ARB_vertex_shader = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_shader");
-    GLAD_GL_ARB_vertex_type_2_10_10_10_rev = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_vertex_type_2_10_10_10_rev");
-    GLAD_GL_ARB_viewport_array = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_viewport_array");
-    GLAD_GL_ATI_draw_buffers = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ATI_draw_buffers");
-    GLAD_GL_ATI_separate_stencil = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ATI_separate_stencil");
-    GLAD_GL_EXT_blend_color = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_blend_color");
-    GLAD_GL_EXT_blend_equation_separate = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_blend_equation_separate");
-    GLAD_GL_EXT_blend_func_separate = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_blend_func_separate");
-    GLAD_GL_EXT_blend_minmax = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_blend_minmax");
-    GLAD_GL_EXT_copy_texture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_copy_texture");
-    GLAD_GL_EXT_debug_label = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_debug_label");
-    GLAD_GL_EXT_debug_marker = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_debug_marker");
-    GLAD_GL_EXT_direct_state_access = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_direct_state_access");
-    GLAD_GL_EXT_draw_buffers2 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_draw_buffers2");
-    GLAD_GL_EXT_draw_instanced = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_draw_instanced");
-    GLAD_GL_EXT_draw_range_elements = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_draw_range_elements");
-    GLAD_GL_EXT_framebuffer_blit = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_framebuffer_blit");
-    GLAD_GL_EXT_framebuffer_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_framebuffer_multisample");
-    GLAD_GL_EXT_framebuffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_framebuffer_object");
-    GLAD_GL_EXT_geometry_shader4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_geometry_shader4");
-    GLAD_GL_EXT_gpu_shader4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_gpu_shader4");
-    GLAD_GL_EXT_multi_draw_arrays = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_multi_draw_arrays");
-    GLAD_GL_EXT_point_parameters = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_point_parameters");
-    GLAD_GL_EXT_polygon_offset_clamp = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_polygon_offset_clamp");
-    GLAD_GL_EXT_provoking_vertex = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_provoking_vertex");
-    GLAD_GL_EXT_shader_image_load_store = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_shader_image_load_store");
-    GLAD_GL_EXT_subtexture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_subtexture");
-    GLAD_GL_EXT_texture3D = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture3D");
-    GLAD_GL_EXT_texture_array = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_array");
-    GLAD_GL_EXT_texture_buffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_buffer_object");
-    GLAD_GL_EXT_texture_integer = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_integer");
-    GLAD_GL_EXT_texture_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_object");
-    GLAD_GL_EXT_texture_storage = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_storage");
-    GLAD_GL_EXT_timer_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_timer_query");
-    GLAD_GL_EXT_transform_feedback = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_transform_feedback");
-    GLAD_GL_EXT_vertex_array = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_vertex_array");
-    GLAD_GL_EXT_vertex_attrib_64bit = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_vertex_attrib_64bit");
-    GLAD_GL_INGR_blend_func_separate = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_INGR_blend_func_separate");
-    GLAD_GL_KHR_debug = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_KHR_debug");
-    GLAD_GL_KHR_robustness = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_KHR_robustness");
-    GLAD_GL_NVX_conditional_render = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NVX_conditional_render");
-    GLAD_GL_NV_conditional_render = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_conditional_render");
-    GLAD_GL_NV_explicit_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_explicit_multisample");
-    GLAD_GL_NV_geometry_program4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_geometry_program4");
-    GLAD_GL_NV_point_sprite = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_point_sprite");
-    GLAD_GL_NV_transform_feedback = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_transform_feedback");
-    GLAD_GL_NV_transform_feedback2 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_transform_feedback2");
-    GLAD_GL_NV_vertex_program = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_vertex_program");
-    GLAD_GL_NV_vertex_program4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_NV_vertex_program4");
-    GLAD_GL_OES_single_precision = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_OES_single_precision");
-    GLAD_GL_SGIS_point_parameters = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_SGIS_point_parameters");
+    GLAD_GL_AMD_draw_buffers_blend = glad_gl_has_extension(exts, exts_i, "GL_AMD_draw_buffers_blend");
+    GLAD_GL_AMD_multi_draw_indirect = glad_gl_has_extension(exts, exts_i, "GL_AMD_multi_draw_indirect");
+    GLAD_GL_APPLE_flush_buffer_range = glad_gl_has_extension(exts, exts_i, "GL_APPLE_flush_buffer_range");
+    GLAD_GL_APPLE_vertex_array_object = glad_gl_has_extension(exts, exts_i, "GL_APPLE_vertex_array_object");
+    GLAD_GL_ARB_ES2_compatibility = glad_gl_has_extension(exts, exts_i, "GL_ARB_ES2_compatibility");
+    GLAD_GL_ARB_ES3_1_compatibility = glad_gl_has_extension(exts, exts_i, "GL_ARB_ES3_1_compatibility");
+    GLAD_GL_ARB_base_instance = glad_gl_has_extension(exts, exts_i, "GL_ARB_base_instance");
+    GLAD_GL_ARB_blend_func_extended = glad_gl_has_extension(exts, exts_i, "GL_ARB_blend_func_extended");
+    GLAD_GL_ARB_buffer_storage = glad_gl_has_extension(exts, exts_i, "GL_ARB_buffer_storage");
+    GLAD_GL_ARB_clear_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_clear_buffer_object");
+    GLAD_GL_ARB_clear_texture = glad_gl_has_extension(exts, exts_i, "GL_ARB_clear_texture");
+    GLAD_GL_ARB_clip_control = glad_gl_has_extension(exts, exts_i, "GL_ARB_clip_control");
+    GLAD_GL_ARB_color_buffer_float = glad_gl_has_extension(exts, exts_i, "GL_ARB_color_buffer_float");
+    GLAD_GL_ARB_compute_shader = glad_gl_has_extension(exts, exts_i, "GL_ARB_compute_shader");
+    GLAD_GL_ARB_copy_buffer = glad_gl_has_extension(exts, exts_i, "GL_ARB_copy_buffer");
+    GLAD_GL_ARB_copy_image = glad_gl_has_extension(exts, exts_i, "GL_ARB_copy_image");
+    GLAD_GL_ARB_debug_output = glad_gl_has_extension(exts, exts_i, "GL_ARB_debug_output");
+    GLAD_GL_ARB_direct_state_access = glad_gl_has_extension(exts, exts_i, "GL_ARB_direct_state_access");
+    GLAD_GL_ARB_draw_buffers = glad_gl_has_extension(exts, exts_i, "GL_ARB_draw_buffers");
+    GLAD_GL_ARB_draw_buffers_blend = glad_gl_has_extension(exts, exts_i, "GL_ARB_draw_buffers_blend");
+    GLAD_GL_ARB_draw_elements_base_vertex = glad_gl_has_extension(exts, exts_i, "GL_ARB_draw_elements_base_vertex");
+    GLAD_GL_ARB_draw_indirect = glad_gl_has_extension(exts, exts_i, "GL_ARB_draw_indirect");
+    GLAD_GL_ARB_draw_instanced = glad_gl_has_extension(exts, exts_i, "GL_ARB_draw_instanced");
+    GLAD_GL_ARB_framebuffer_no_attachments = glad_gl_has_extension(exts, exts_i, "GL_ARB_framebuffer_no_attachments");
+    GLAD_GL_ARB_framebuffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_framebuffer_object");
+    GLAD_GL_ARB_geometry_shader4 = glad_gl_has_extension(exts, exts_i, "GL_ARB_geometry_shader4");
+    GLAD_GL_ARB_get_program_binary = glad_gl_has_extension(exts, exts_i, "GL_ARB_get_program_binary");
+    GLAD_GL_ARB_get_texture_sub_image = glad_gl_has_extension(exts, exts_i, "GL_ARB_get_texture_sub_image");
+    GLAD_GL_ARB_gl_spirv = glad_gl_has_extension(exts, exts_i, "GL_ARB_gl_spirv");
+    GLAD_GL_ARB_gpu_shader_fp64 = glad_gl_has_extension(exts, exts_i, "GL_ARB_gpu_shader_fp64");
+    GLAD_GL_ARB_imaging = glad_gl_has_extension(exts, exts_i, "GL_ARB_imaging");
+    GLAD_GL_ARB_indirect_parameters = glad_gl_has_extension(exts, exts_i, "GL_ARB_indirect_parameters");
+    GLAD_GL_ARB_instanced_arrays = glad_gl_has_extension(exts, exts_i, "GL_ARB_instanced_arrays");
+    GLAD_GL_ARB_internalformat_query = glad_gl_has_extension(exts, exts_i, "GL_ARB_internalformat_query");
+    GLAD_GL_ARB_internalformat_query2 = glad_gl_has_extension(exts, exts_i, "GL_ARB_internalformat_query2");
+    GLAD_GL_ARB_invalidate_subdata = glad_gl_has_extension(exts, exts_i, "GL_ARB_invalidate_subdata");
+    GLAD_GL_ARB_map_buffer_range = glad_gl_has_extension(exts, exts_i, "GL_ARB_map_buffer_range");
+    GLAD_GL_ARB_multi_bind = glad_gl_has_extension(exts, exts_i, "GL_ARB_multi_bind");
+    GLAD_GL_ARB_multi_draw_indirect = glad_gl_has_extension(exts, exts_i, "GL_ARB_multi_draw_indirect");
+    GLAD_GL_ARB_multisample = glad_gl_has_extension(exts, exts_i, "GL_ARB_multisample");
+    GLAD_GL_ARB_multitexture = glad_gl_has_extension(exts, exts_i, "GL_ARB_multitexture");
+    GLAD_GL_ARB_occlusion_query = glad_gl_has_extension(exts, exts_i, "GL_ARB_occlusion_query");
+    GLAD_GL_ARB_point_parameters = glad_gl_has_extension(exts, exts_i, "GL_ARB_point_parameters");
+    GLAD_GL_ARB_polygon_offset_clamp = glad_gl_has_extension(exts, exts_i, "GL_ARB_polygon_offset_clamp");
+    GLAD_GL_ARB_program_interface_query = glad_gl_has_extension(exts, exts_i, "GL_ARB_program_interface_query");
+    GLAD_GL_ARB_provoking_vertex = glad_gl_has_extension(exts, exts_i, "GL_ARB_provoking_vertex");
+    GLAD_GL_ARB_robustness = glad_gl_has_extension(exts, exts_i, "GL_ARB_robustness");
+    GLAD_GL_ARB_sample_shading = glad_gl_has_extension(exts, exts_i, "GL_ARB_sample_shading");
+    GLAD_GL_ARB_sampler_objects = glad_gl_has_extension(exts, exts_i, "GL_ARB_sampler_objects");
+    GLAD_GL_ARB_separate_shader_objects = glad_gl_has_extension(exts, exts_i, "GL_ARB_separate_shader_objects");
+    GLAD_GL_ARB_shader_atomic_counters = glad_gl_has_extension(exts, exts_i, "GL_ARB_shader_atomic_counters");
+    GLAD_GL_ARB_shader_image_load_store = glad_gl_has_extension(exts, exts_i, "GL_ARB_shader_image_load_store");
+    GLAD_GL_ARB_shader_objects = glad_gl_has_extension(exts, exts_i, "GL_ARB_shader_objects");
+    GLAD_GL_ARB_shader_storage_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_shader_storage_buffer_object");
+    GLAD_GL_ARB_shader_subroutine = glad_gl_has_extension(exts, exts_i, "GL_ARB_shader_subroutine");
+    GLAD_GL_ARB_sync = glad_gl_has_extension(exts, exts_i, "GL_ARB_sync");
+    GLAD_GL_ARB_tessellation_shader = glad_gl_has_extension(exts, exts_i, "GL_ARB_tessellation_shader");
+    GLAD_GL_ARB_texture_barrier = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_barrier");
+    GLAD_GL_ARB_texture_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_buffer_object");
+    GLAD_GL_ARB_texture_buffer_range = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_buffer_range");
+    GLAD_GL_ARB_texture_compression = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_compression");
+    GLAD_GL_ARB_texture_multisample = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_multisample");
+    GLAD_GL_ARB_texture_storage = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_storage");
+    GLAD_GL_ARB_texture_storage_multisample = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_storage_multisample");
+    GLAD_GL_ARB_texture_view = glad_gl_has_extension(exts, exts_i, "GL_ARB_texture_view");
+    GLAD_GL_ARB_timer_query = glad_gl_has_extension(exts, exts_i, "GL_ARB_timer_query");
+    GLAD_GL_ARB_transform_feedback2 = glad_gl_has_extension(exts, exts_i, "GL_ARB_transform_feedback2");
+    GLAD_GL_ARB_transform_feedback3 = glad_gl_has_extension(exts, exts_i, "GL_ARB_transform_feedback3");
+    GLAD_GL_ARB_transform_feedback_instanced = glad_gl_has_extension(exts, exts_i, "GL_ARB_transform_feedback_instanced");
+    GLAD_GL_ARB_uniform_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_uniform_buffer_object");
+    GLAD_GL_ARB_vertex_array_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_array_object");
+    GLAD_GL_ARB_vertex_attrib_64bit = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_attrib_64bit");
+    GLAD_GL_ARB_vertex_attrib_binding = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_attrib_binding");
+    GLAD_GL_ARB_vertex_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_buffer_object");
+    GLAD_GL_ARB_vertex_program = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_program");
+    GLAD_GL_ARB_vertex_shader = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_shader");
+    GLAD_GL_ARB_vertex_type_2_10_10_10_rev = glad_gl_has_extension(exts, exts_i, "GL_ARB_vertex_type_2_10_10_10_rev");
+    GLAD_GL_ARB_viewport_array = glad_gl_has_extension(exts, exts_i, "GL_ARB_viewport_array");
+    GLAD_GL_ATI_draw_buffers = glad_gl_has_extension(exts, exts_i, "GL_ATI_draw_buffers");
+    GLAD_GL_ATI_separate_stencil = glad_gl_has_extension(exts, exts_i, "GL_ATI_separate_stencil");
+    GLAD_GL_EXT_blend_color = glad_gl_has_extension(exts, exts_i, "GL_EXT_blend_color");
+    GLAD_GL_EXT_blend_equation_separate = glad_gl_has_extension(exts, exts_i, "GL_EXT_blend_equation_separate");
+    GLAD_GL_EXT_blend_func_separate = glad_gl_has_extension(exts, exts_i, "GL_EXT_blend_func_separate");
+    GLAD_GL_EXT_blend_minmax = glad_gl_has_extension(exts, exts_i, "GL_EXT_blend_minmax");
+    GLAD_GL_EXT_copy_texture = glad_gl_has_extension(exts, exts_i, "GL_EXT_copy_texture");
+    GLAD_GL_EXT_direct_state_access = glad_gl_has_extension(exts, exts_i, "GL_EXT_direct_state_access");
+    GLAD_GL_EXT_draw_buffers2 = glad_gl_has_extension(exts, exts_i, "GL_EXT_draw_buffers2");
+    GLAD_GL_EXT_draw_instanced = glad_gl_has_extension(exts, exts_i, "GL_EXT_draw_instanced");
+    GLAD_GL_EXT_draw_range_elements = glad_gl_has_extension(exts, exts_i, "GL_EXT_draw_range_elements");
+    GLAD_GL_EXT_framebuffer_blit = glad_gl_has_extension(exts, exts_i, "GL_EXT_framebuffer_blit");
+    GLAD_GL_EXT_framebuffer_multisample = glad_gl_has_extension(exts, exts_i, "GL_EXT_framebuffer_multisample");
+    GLAD_GL_EXT_framebuffer_object = glad_gl_has_extension(exts, exts_i, "GL_EXT_framebuffer_object");
+    GLAD_GL_EXT_geometry_shader4 = glad_gl_has_extension(exts, exts_i, "GL_EXT_geometry_shader4");
+    GLAD_GL_EXT_gpu_shader4 = glad_gl_has_extension(exts, exts_i, "GL_EXT_gpu_shader4");
+    GLAD_GL_EXT_multi_draw_arrays = glad_gl_has_extension(exts, exts_i, "GL_EXT_multi_draw_arrays");
+    GLAD_GL_EXT_point_parameters = glad_gl_has_extension(exts, exts_i, "GL_EXT_point_parameters");
+    GLAD_GL_EXT_polygon_offset_clamp = glad_gl_has_extension(exts, exts_i, "GL_EXT_polygon_offset_clamp");
+    GLAD_GL_EXT_provoking_vertex = glad_gl_has_extension(exts, exts_i, "GL_EXT_provoking_vertex");
+    GLAD_GL_EXT_shader_image_load_store = glad_gl_has_extension(exts, exts_i, "GL_EXT_shader_image_load_store");
+    GLAD_GL_EXT_subtexture = glad_gl_has_extension(exts, exts_i, "GL_EXT_subtexture");
+    GLAD_GL_EXT_texture3D = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture3D");
+    GLAD_GL_EXT_texture_array = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture_array");
+    GLAD_GL_EXT_texture_buffer_object = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture_buffer_object");
+    GLAD_GL_EXT_texture_integer = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture_integer");
+    GLAD_GL_EXT_texture_object = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture_object");
+    GLAD_GL_EXT_texture_storage = glad_gl_has_extension(exts, exts_i, "GL_EXT_texture_storage");
+    GLAD_GL_EXT_timer_query = glad_gl_has_extension(exts, exts_i, "GL_EXT_timer_query");
+    GLAD_GL_EXT_transform_feedback = glad_gl_has_extension(exts, exts_i, "GL_EXT_transform_feedback");
+    GLAD_GL_EXT_vertex_array = glad_gl_has_extension(exts, exts_i, "GL_EXT_vertex_array");
+    GLAD_GL_EXT_vertex_attrib_64bit = glad_gl_has_extension(exts, exts_i, "GL_EXT_vertex_attrib_64bit");
+    GLAD_GL_INGR_blend_func_separate = glad_gl_has_extension(exts, exts_i, "GL_INGR_blend_func_separate");
+    GLAD_GL_KHR_debug = glad_gl_has_extension(exts, exts_i, "GL_KHR_debug");
+    GLAD_GL_KHR_robustness = glad_gl_has_extension(exts, exts_i, "GL_KHR_robustness");
+    GLAD_GL_NVX_conditional_render = glad_gl_has_extension(exts, exts_i, "GL_NVX_conditional_render");
+    GLAD_GL_NV_conditional_render = glad_gl_has_extension(exts, exts_i, "GL_NV_conditional_render");
+    GLAD_GL_NV_explicit_multisample = glad_gl_has_extension(exts, exts_i, "GL_NV_explicit_multisample");
+    GLAD_GL_NV_geometry_program4 = glad_gl_has_extension(exts, exts_i, "GL_NV_geometry_program4");
+    GLAD_GL_NV_point_sprite = glad_gl_has_extension(exts, exts_i, "GL_NV_point_sprite");
+    GLAD_GL_NV_transform_feedback = glad_gl_has_extension(exts, exts_i, "GL_NV_transform_feedback");
+    GLAD_GL_NV_transform_feedback2 = glad_gl_has_extension(exts, exts_i, "GL_NV_transform_feedback2");
+    GLAD_GL_NV_vertex_program = glad_gl_has_extension(exts, exts_i, "GL_NV_vertex_program");
+    GLAD_GL_NV_vertex_program4 = glad_gl_has_extension(exts, exts_i, "GL_NV_vertex_program4");
+    GLAD_GL_OES_single_precision = glad_gl_has_extension(exts, exts_i, "GL_OES_single_precision");
+    GLAD_GL_SGIS_point_parameters = glad_gl_has_extension(exts, exts_i, "GL_SGIS_point_parameters");
 
-    glad_gl_free_extensions(exts_i, num_exts_i);
+    glad_gl_free_extensions(exts_i);
 
     return 1;
 }
@@ -14514,7 +14447,6 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
 
     glad_glGetString = (PFNGLGETSTRINGPROC) load(userptr, "glGetString");
     if(glad_glGetString == NULL) return 0;
-    if(glad_glGetString(GL_VERSION) == NULL) return 0;
     version = glad_gl_find_core_gl();
 
     glad_gl_load_GL_VERSION_1_0(load, userptr);
@@ -14537,7 +14469,7 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_VERSION_4_5(load, userptr);
     glad_gl_load_GL_VERSION_4_6(load, userptr);
 
-    if (!glad_gl_find_extensions_gl(version)) return 0;
+    if (!glad_gl_find_extensions_gl()) return 0;
     glad_gl_load_GL_AMD_draw_buffers_blend(load, userptr);
     glad_gl_load_GL_AMD_multi_draw_indirect(load, userptr);
     glad_gl_load_GL_APPLE_flush_buffer_range(load, userptr);
@@ -14623,8 +14555,6 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_EXT_blend_func_separate(load, userptr);
     glad_gl_load_GL_EXT_blend_minmax(load, userptr);
     glad_gl_load_GL_EXT_copy_texture(load, userptr);
-    glad_gl_load_GL_EXT_debug_label(load, userptr);
-    glad_gl_load_GL_EXT_debug_marker(load, userptr);
     glad_gl_load_GL_EXT_direct_state_access(load, userptr);
     glad_gl_load_GL_EXT_draw_buffers2(load, userptr);
     glad_gl_load_GL_EXT_draw_instanced(load, userptr);
@@ -15127,7 +15057,6 @@ void gladInstallGLDebug() {
     glad_debug_glGetNamedRenderbufferParameteriv = glad_debug_impl_glGetNamedRenderbufferParameteriv;
     glad_debug_glGetNamedRenderbufferParameterivEXT = glad_debug_impl_glGetNamedRenderbufferParameterivEXT;
     glad_debug_glGetObjectLabel = glad_debug_impl_glGetObjectLabel;
-    glad_debug_glGetObjectLabelEXT = glad_debug_impl_glGetObjectLabelEXT;
     glad_debug_glGetObjectParameterfvARB = glad_debug_impl_glGetObjectParameterfvARB;
     glad_debug_glGetObjectParameterivARB = glad_debug_impl_glGetObjectParameterivARB;
     glad_debug_glGetObjectPtrLabel = glad_debug_impl_glGetObjectPtrLabel;
@@ -15271,7 +15200,6 @@ void gladInstallGLDebug() {
     glad_debug_glGetnUniformuivARB = glad_debug_impl_glGetnUniformuivARB;
     glad_debug_glHint = glad_debug_impl_glHint;
     glad_debug_glIndexPointerEXT = glad_debug_impl_glIndexPointerEXT;
-    glad_debug_glInsertEventMarkerEXT = glad_debug_impl_glInsertEventMarkerEXT;
     glad_debug_glInvalidateBufferData = glad_debug_impl_glInvalidateBufferData;
     glad_debug_glInvalidateBufferSubData = glad_debug_impl_glInvalidateBufferSubData;
     glad_debug_glInvalidateFramebuffer = glad_debug_impl_glInvalidateFramebuffer;
@@ -15304,7 +15232,6 @@ void gladInstallGLDebug() {
     glad_debug_glIsTransformFeedbackNV = glad_debug_impl_glIsTransformFeedbackNV;
     glad_debug_glIsVertexArray = glad_debug_impl_glIsVertexArray;
     glad_debug_glIsVertexArrayAPPLE = glad_debug_impl_glIsVertexArrayAPPLE;
-    glad_debug_glLabelObjectEXT = glad_debug_impl_glLabelObjectEXT;
     glad_debug_glLineWidth = glad_debug_impl_glLineWidth;
     glad_debug_glLinkProgram = glad_debug_impl_glLinkProgram;
     glad_debug_glLinkProgramARB = glad_debug_impl_glLinkProgramARB;
@@ -15478,7 +15405,6 @@ void gladInstallGLDebug() {
     glad_debug_glPolygonOffsetClamp = glad_debug_impl_glPolygonOffsetClamp;
     glad_debug_glPolygonOffsetClampEXT = glad_debug_impl_glPolygonOffsetClampEXT;
     glad_debug_glPopDebugGroup = glad_debug_impl_glPopDebugGroup;
-    glad_debug_glPopGroupMarkerEXT = glad_debug_impl_glPopGroupMarkerEXT;
     glad_debug_glPrimitiveRestartIndex = glad_debug_impl_glPrimitiveRestartIndex;
     glad_debug_glPrioritizeTexturesEXT = glad_debug_impl_glPrioritizeTexturesEXT;
     glad_debug_glProgramBinary = glad_debug_impl_glProgramBinary;
@@ -15605,7 +15531,6 @@ void gladInstallGLDebug() {
     glad_debug_glProvokingVertexEXT = glad_debug_impl_glProvokingVertexEXT;
     glad_debug_glPushClientAttribDefaultEXT = glad_debug_impl_glPushClientAttribDefaultEXT;
     glad_debug_glPushDebugGroup = glad_debug_impl_glPushDebugGroup;
-    glad_debug_glPushGroupMarkerEXT = glad_debug_impl_glPushGroupMarkerEXT;
     glad_debug_glQueryCounter = glad_debug_impl_glQueryCounter;
     glad_debug_glReadBuffer = glad_debug_impl_glReadBuffer;
     glad_debug_glReadPixels = glad_debug_impl_glReadPixels;
@@ -16489,7 +16414,6 @@ void gladUninstallGLDebug() {
     glad_debug_glGetNamedRenderbufferParameteriv = glad_glGetNamedRenderbufferParameteriv;
     glad_debug_glGetNamedRenderbufferParameterivEXT = glad_glGetNamedRenderbufferParameterivEXT;
     glad_debug_glGetObjectLabel = glad_glGetObjectLabel;
-    glad_debug_glGetObjectLabelEXT = glad_glGetObjectLabelEXT;
     glad_debug_glGetObjectParameterfvARB = glad_glGetObjectParameterfvARB;
     glad_debug_glGetObjectParameterivARB = glad_glGetObjectParameterivARB;
     glad_debug_glGetObjectPtrLabel = glad_glGetObjectPtrLabel;
@@ -16633,7 +16557,6 @@ void gladUninstallGLDebug() {
     glad_debug_glGetnUniformuivARB = glad_glGetnUniformuivARB;
     glad_debug_glHint = glad_glHint;
     glad_debug_glIndexPointerEXT = glad_glIndexPointerEXT;
-    glad_debug_glInsertEventMarkerEXT = glad_glInsertEventMarkerEXT;
     glad_debug_glInvalidateBufferData = glad_glInvalidateBufferData;
     glad_debug_glInvalidateBufferSubData = glad_glInvalidateBufferSubData;
     glad_debug_glInvalidateFramebuffer = glad_glInvalidateFramebuffer;
@@ -16666,7 +16589,6 @@ void gladUninstallGLDebug() {
     glad_debug_glIsTransformFeedbackNV = glad_glIsTransformFeedbackNV;
     glad_debug_glIsVertexArray = glad_glIsVertexArray;
     glad_debug_glIsVertexArrayAPPLE = glad_glIsVertexArrayAPPLE;
-    glad_debug_glLabelObjectEXT = glad_glLabelObjectEXT;
     glad_debug_glLineWidth = glad_glLineWidth;
     glad_debug_glLinkProgram = glad_glLinkProgram;
     glad_debug_glLinkProgramARB = glad_glLinkProgramARB;
@@ -16840,7 +16762,6 @@ void gladUninstallGLDebug() {
     glad_debug_glPolygonOffsetClamp = glad_glPolygonOffsetClamp;
     glad_debug_glPolygonOffsetClampEXT = glad_glPolygonOffsetClampEXT;
     glad_debug_glPopDebugGroup = glad_glPopDebugGroup;
-    glad_debug_glPopGroupMarkerEXT = glad_glPopGroupMarkerEXT;
     glad_debug_glPrimitiveRestartIndex = glad_glPrimitiveRestartIndex;
     glad_debug_glPrioritizeTexturesEXT = glad_glPrioritizeTexturesEXT;
     glad_debug_glProgramBinary = glad_glProgramBinary;
@@ -16967,7 +16888,6 @@ void gladUninstallGLDebug() {
     glad_debug_glProvokingVertexEXT = glad_glProvokingVertexEXT;
     glad_debug_glPushClientAttribDefaultEXT = glad_glPushClientAttribDefaultEXT;
     glad_debug_glPushDebugGroup = glad_glPushDebugGroup;
-    glad_debug_glPushGroupMarkerEXT = glad_glPushGroupMarkerEXT;
     glad_debug_glQueryCounter = glad_glQueryCounter;
     glad_debug_glReadBuffer = glad_glReadBuffer;
     glad_debug_glReadPixels = glad_glReadPixels;
