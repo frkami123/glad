@@ -1,46 +1,41 @@
 cmake_minimum_required(VERSION 3.24)
-set(CMAKE_MODULE_PATH ${EAO_CMAKE_MODULE_PATH} ${CMAKE_MODULE_PATH})
-
 set(PROJECT_NAME "glad")
 
-project(${PROJECT_NAME} VERSION 0.0.1
-  DESCRIPTION "${PROJECT_NAME}")
+project(glad VERSION 0.0.1 DESCRIPTION "glad")
 
 set(CMAKE_POLICY_DEFAULT_CMP0135 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0048 NEW)
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 
-option(GLAD_PLATFROM_GLX "Glad compiles GLX" OFF)
-option(GLAD_PLATFROM_WGL "Glad compiles WGL" OFF)
-option(GLAD_GLX_NO_X11 "No idea what this is" OFF)
-
 option(GLAD_PLATFORM_EMSCRIPTEN "Glad on emscripten platform" OFF)
-option(GLAD_PLATFROM_GLES "Glad compiles GLES" OFF)
 
-add_library(glad STATIC
-  include/glad/gl.h
-  #$<IF:$<BOOL:GLAD_PLATFROM_GLX>,include/glad/gles2.h,"">
-  $<$<PLATFORM_ID:Linux>:$<IF:$<BOOL:GLAD_PLATFROM_GLX>,include/glad/glx.h,"">>
-  $<$<PLATFORM_ID:Windows>:$<IF:$<BOOL:GLAD_PLATFROM_WGL>,include/glad/wgl.h,"">>
-  include/KHR/khrplatform.h
+add_library(glad STATIC)
+
+target_sources(glad
+  PUBLIC
+    FILE_SET HEADERS 
+    BASE_DIRS include
+    FILES 
+    include/glad/gl.h
+    $<$<PLATFORM_ID:Linux>:include/glad/glx.h>
+    $<$<PLATFORM_ID:Windows>:include/glad/wgl.h>
+    include/KHR/khrplatform.h
+  PRIVATE
+    src/gl.c
+    $<$<PLATFORM_ID:Linux>:$<IF:$<BOOL:GLAD_PLATFROM_GLX>,src/glx.c,"">>
+    $<$<PLATFORM_ID:Windows>:$<IF:$<BOOL:GLAD_PLATFROM_WGL>,src/wgl.c,"">>
 )
 
-target_sources(glad PRIVATE
-  src/gl.c
-  #$<IF:$<BOOL:GLAD_PLATFROM_GLX>,src/gles2.c,"">
-  $<$<PLATFORM_ID:Linux>:$<IF:$<BOOL:GLAD_PLATFROM_GLX>,src/glx.c,"">>
-  $<$<PLATFORM_ID:Windows>:$<IF:$<BOOL:GLAD_PLATFROM_WGL>,src/wgl.c,"">>
-)
+set_property(TARGET glad PROPERTY C_STANDARD 17)
+target_compile_features(glad INTERFACE c_std_17)
 
-set_property(TARGET glad PROPERTY CXX_STANDARD 23)
-target_compile_features(glad INTERFACE cxx_std_23)
-if(NOT WIN32)
-  target_compile_options(glad PRIVATE -fPIC)
-endif()
+# if(NOT WIN32)
+#  target_compile_options(glad PRIVATE -fPIC)
+# endif()
+
 target_compile_definitions(glad PRIVATE $<IF:$<BOOL:GLAD_PLATFORM_EMSCRIPTEN>,"GLAD_PLATFORM_EMSCRIPTEN","">)
 
-target_include_directories(
-  glad
+target_include_directories(glad
   PUBLIC
-  $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
 )
